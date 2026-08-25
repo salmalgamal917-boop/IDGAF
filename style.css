@@ -1,0 +1,1016 @@
+/* --- CSS VARIABLES (Theming System) --- */
+:root {
+    /* Light Theme (Default) */
+    --bg-main: #f3f4f6;
+    --bg-surface: #ffffff;
+    --bg-surface-hover: #f9fafb;
+    --text-primary: #111827;
+    --text-secondary: #6b7280;
+    --border-color: #e5e7eb;
+    
+    /* Brand Colors */
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    
+    /* Layout */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-modal: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    --transition: 0.2s ease-in-out;
+}
+
+[data-theme="dark"] {
+    /* Dark Theme */
+    --bg-main: #111827;
+    --bg-surface: #1f2937;
+    --bg-surface-hover: #374151;
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --border-color: #374151;
+}
+
+/* --- RESET & BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    transition: background-color var(--transition), color var(--transition);
+    line-height: 1.5;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    transition: all var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+/* --- TYPOGRAPHY --- */
+h1, h2, h3 {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.text-success { color: var(--success) !important; }
+.text-warning { color: var(--warning) !important; }
+
+/* --- NAVIGATION --- */
+.navbar {
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo h1 {
+    font-size: 1.25rem;
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-item {
+    padding: 0.5rem 1rem;
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+}
+
+.nav-item:hover {
+    background-color: var(--bg-surface-hover);
+    color: var(--text-primary);
+}
+
+.nav-item.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+.theme-btn {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background-color: var(--bg-main);
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+/* --- LAYOUT --- */
+.container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.view {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background-color: var(--bg-surface);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+/* --- BUTTONS & INPUTS --- */
+.btn {
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+}
+
+.btn-primary { background-color: var(--primary); color: white; }
+.btn-primary:hover { background-color: var(--primary-hover); }
+
+.btn-secondary { background-color: var(--bg-main); color: var(--text-primary); border: 1px solid var(--border-color); }
+.btn-secondary:hover { background-color: var(--bg-surface-hover); }
+
+.btn-danger { background-color: var(--danger); color: white; }
+.btn-danger:hover { background-color: var(--danger-hover); }
+
+.btn-text { color: var(--text-secondary); }
+.btn-text:hover { color: var(--text-primary); }
+
+.btn-large { padding: 0.8rem 2rem; font-size: 1.1rem; }
+
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    outline: none;
+}
+
+.input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+/* --- DASHBOARD STATS --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background-color: var(--bg-surface);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+}
+
+/* --- TASK LIST --- */
+.task-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.filters {
+    display: flex;
+    background-color: var(--bg-surface);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.filter-btn {
+    padding: 0.75rem 1rem;
+    color: var(--text-secondary);
+}
+
+.filter-btn.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.task-item {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.task-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.task-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;Here is the complete, polished, and responsive Study Planner Dashboard. It is built strictly with HTML5, CSS3, and Vanilla JavaScript, following modern SaaS design principles.
+
+### 1. `index.html`
+This is the structure of your application. It contains the sidebar navigation, the main views (Dashboard, Tasks, Timer, Progress), and the task modal.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Planner Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="logo">
+            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <span>StudyPlan</span>
+        </div>
+        <ul class="nav-links">
+            <li data-target="dashboard-view" class="active">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                <span>Dashboard</span>
+            </li>
+            <li data-target="tasks-view">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span>Tasks</span>
+            </li>
+            <li data-target="timer-view">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Timer</span>
+            </li>
+            <li data-target="progress-view">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                <span>Progress</span>
+            </li>
+        </ul>
+        <div class="theme-toggle" id="theme-toggle">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <span>Toggle Theme</span>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="content">
+        <!-- 1. Dashboard View -->
+        <section id="dashboard-view" class="view active">
+            <header class="view-header">
+                <div>
+                    <h1 id="greeting">Good Morning!</h1>
+                    <p class="subtitle" id="current-date">Today is ...</p>
+                </div>
+                <button class="btn btn-primary" onclick="openModal()">+ New Task</button>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Overall Progress</h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="dash-progress-bar"></div>
+                    </div>
+                    <p class="stat-value" id="dash-progress-text">0%</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Completed Tasks</h3>
+                    <p class="stat-value" id="dash-completed">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Remaining Tasks</h3>
+                    <p class="stat-value" id="dash-remaining">0</p>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <h2>Today's Priority</h2>
+            </div>
+            <div id="dashboard-task-list" class="task-list">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- 2. Tasks View -->
+        <section id="tasks-view" class="view">
+            <header class="view-header">
+                <h1>Task Manager</h1>
+                <button class="btn btn-primary" onclick="openModal()">+ New Task</button>
+            </header>
+            
+            <div class="task-controls">
+                <input type="text" id="search-task" placeholder="Search tasks..." class="form-input">
+                <select id="filter-task" class="form-input">
+                    <option value="all">All Tasks</option>
+                    <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+
+            <div id="main-task-list" class="task-list">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- 3. Timer View -->
+        <section id="timer-view" class="view">
+            <header class="view-header">
+                <h1>Study Timer</h1>
+            </header>
+            
+            <div class="timer-container">
+                <div class="timer-modes">
+                    <button class="mode-btn active" id="mode-pomodoro">Pomodoro (25m)</button>
+                    <button class="mode-btn" id="mode-break">Short Break (5m)</button>
+                </div>
+                
+                <div class="timer-display">
+                    <span id="time-display">25:00</span>
+                </div>
+                
+                <div class="timer-controls">
+                    <button class="btn btn-primary" id="btn-start">Start</button>
+                    <button class="btn btn-secondary" id="btn-pause">Pause</button>
+                    <button class="btn btn-outline" id="btn-reset">Reset</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Progress View -->
+        <section id="progress-view" class="view">
+            <header class="view-header">
+                <h1>Your Progress</h1>
+            </header>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Tasks Created</h3>
+                    <p class="stat-value" id="prog-total">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Tasks Completed</h3>
+                    <p class="stat-value" id="prog-completed">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Completion Rate</h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="prog-rate-bar"></div>
+                    </div>
+                    <p class="stat-value" id="prog-rate-text">0%</p>
+                </div>
+            </div>
+
+            <!-- Custom CSS Chart for Subjects -->
+            <div class="section-title">
+                <h2>Subject Breakdown</h2>
+            </div>
+            <div class="subject-chart" id="subject-chart">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Task Modal -->
+    <div class="modal-overlay" id="task-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modal-title">Add New Task</h2>
+                <button class="close-btn" onclick="closeModal()">×</button>
+            </div>
+            <form id="task-form">
+                <input type="hidden" id="task-id">
+                <div class="form-group">
+                    <label>Task Title</label>
+                    <input type="text" id="task-title" class="form-input" required placeholder="E.g., Read Chapter 5">
+                </div>
+                <div class="form-group">
+                    <label>Subject / Category</label>
+                    <input type="text" id="task-subject" class="form-input" required placeholder="E.g., Biology">
+                </div>
+                <div class="form-group">
+                    <label>Priority</label>
+                    <select id="task-priority" class="form-input">
+                        <option value="low">Low Priority</option>
+                        <option value="medium" selected>Medium Priority</option>
+                        <option value="high">High Priority</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline" onclick="closeModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+/* --- Variables & Theming --- */
+:root {
+    /* Light Theme (Default) */
+    --bg-main: #f8fafc;
+    --bg-surface: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --accent-primary: #4f46e5;
+    --accent-primary-hover: #4338ca;
+    --border-color: #e2e8f0;
+    --danger: #ef4444;
+    --success: #10b981;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+[data-theme="dark"] {
+    /* Dark Theme */
+    --bg-main: #0f172a;
+    --bg-surface: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border-color: #334155;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+}
+
+/* --- Base & Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    display: flex;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Sidebar Navigation --- */
+.sidebar {
+    width: 260px;
+    background-color: var(--bg-surface);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0;
+    position: fixed;
+    height: 100vh;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 24px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    margin-bottom: 40px;
+}
+
+.nav-links {
+    list-style: none;
+    flex: 1;
+}
+
+.nav-links li, .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 24px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.nav-links li:hover, .theme-toggle:hover {
+    background-color: rgba(79, 70, 229, 0.05);
+    color: var(--accent-primary);
+}
+
+.nav-links li.active {
+    background-color: rgba(79, 70, 229, 0.1);
+    color: var(--accent-primary);
+    border-right: 4px solid var(--accent-primary);
+}
+
+/* --- Main Content --- */
+.content {
+    flex: 1;
+    margin-left: 260px;
+    padding: 40px;
+    max-width: 1200px;
+}
+
+.view {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.view.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 32px;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin-top: 8px;
+}
+
+/* --- Buttons & Inputs --- */
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background-color: var(--accent-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-primary-hover);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--border-color);
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+    border-color: var(--accent-primary);
+}
+
+/* --- Grid & Cards (Dashboard) --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background-color: var(--bg-surface);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+}
+
+.stat-card h3 {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 8px;
+    background-color: var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--accent-primary);
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+/* --- Tasks & Lists --- */
+.task-controls {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg-surface);
+    padding: 16px 20px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.task-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+}
+
+.checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.task-item.completed .checkbox {
+    background-color: var(--success);
+    border-color: var(--success);
+}
+
+.task-item.completed .checkbox::after {
+    content: "✓";
+    color: white;
+    font-size: 14px;
+}
+
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+.task-text {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.task-badges {
+    display: flex;
+    gap: 8px;
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.badge.subject { background-color: rgba(79, 70, 229, 0.1); color: var(--accent-primary); }
+.badge.high { background-color: rgba(239, 68, 68, 0.1); color: var(--danger); }
+.badge.medium { background-color: rgba(245, 158, 11, 0.1); color: #d97706; }
+.badge.low { background-color: rgba(16, 185, 129, 0.1); color: var(--success); }
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    padding: 8px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.icon-btn:hover {
+    background-color: var(--border-color);
+    color: var(--danger);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-secondary);
+}
+
+/* --- Timer --- */
+.timer-container {
+    background-color: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    padding: 48px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.timer-modes {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.mode-btn {
+    background: transparent;
+    border: none;
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.mode-btn.active {
+    background-color: rgba(79, 70, 229, 0.1);
+    color: var(--accent-primary);
+}
+
+.timer-display {
+    font-size: 6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 40px;
+    font-variant-numeric: tabular-nums;
+}
+
+.timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+/* --- Custom Subject Chart --- */
+.subject-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background-color: var(--bg-surface);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+}
+
+.chart-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.chart-label { width: 100px; font-weight: 500; }
+.chart-bar-wrap { flex: 1; height: 12px; background-color: var(--border-color); border-radius: 6px; overflow: hidden; }
+.chart-bar-fill { height: 100%; background-color: var(--accent-primary); border-radius: 6px; }
+.chart-count { width: 30px; text-align: right; font-weight: 600; color: var(--text-secondary); }
+
+/* --- Modal --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal {
+    background-color: var(--bg-surface);
+    width: 100%;
+    max-width: 400px;
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    box-shadow: var(--shadow-md);
+}
+
+.modal-overlay.active .modal {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+/* --- Responsive Mobile Design --- */
+@media (max-width: 768px) {
+    body { flex-direction: column; }
+    
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        flex-direction: row;
+        padding: 0;
+        border-right: none;
+        border-top: 1px solid var(--border-color);
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .logo { display: none; } /* Hide logo on mobile bottom bar */
+    
+    .nav-links {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+    
+    .nav-links li {
+        flex-direction: column;
+        gap: 4px;
+        padding: 12px 8px;
+        font-size: 0.75rem;
+    }
+    
+    .nav-links li.active { border-right: none; border-top: 3px solid var(--accent-primary); }
+    
+    .theme-toggle { position: absolute; top: -50px; right: 16px; background: var(--bg-surface); border-radius: 50%; width: 40px; height: 40px; justify-content: center; padding: 0; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); }
+    .theme-toggle span { display: none; }
+    
+    .content {
+        margin-left: 0;
+        padding: 20px;
+        padding-bottom: 100px; /* Space for bottom nav */
+    }
+    
+    .view-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .task-controls { flex-direction: column; }
+    .timer-display { font-size: 4.5rem; }
+}
